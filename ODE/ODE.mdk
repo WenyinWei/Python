@@ -1,0 +1,829 @@
+
+
+
+Title         : My Academic Paper
+
+Author        : Wenyin Wei
+Email         : weiwy16@mails.tsinghua.edu.cn
+
+Bibliography  : example.bib
+Package       : url
+Package       : tikz
+Package       : pgf
+Tex Header    :\usetikzlibrary{arrows, decorations.pathmorphing, backgrounds, positioning, fit, petri, automata}
+Tex Header    :\definecolor{yellow1}{rgb}{1,0.8,0.2} 
+Tex Header    : \usetikzlibrary{decorations.pathreplacing%
+                             ,decorations.pathmorphing}
+Aligned { replace:"~Math&nl;\begin{aligned}&nl;&source;&nl;\end{aligned}&nl;~" }
+[INCLUDE=book]
+[INCLUDE=webtoc]
+[INCLUDE=webanchors]
+
+[TITLE]
+
+~ Begin SidePanel
+[TOC]
+~ End SidePanel
+
+~ Begin MainPanel
+
+# Ordinary Differential Equations    
+***
+
+Reference books are listed here.[@hirsch2012differential;@lynch2009dynamical].
+
+## Fundamentals of Differential Equations 
+
+
+There are several fundamental approaches to tackle ode problems.
+
+For first-order differential equations, following ways are available.
+### Separable Differential Equations 
+
+### Exact Differential Equations 
+
+### Homogeneous Differential Equations 
+
+### Linear Differential Equations 
+
+
+
+### Series Solutions 
+
+
+### Laplace Transform 
+
+
+
+## Planar Systems 
+
+### Basic Classification 
+
+For real distinct eigenvalues:
+
+For complex eigenvalues:
+
+For repeated eigenvalues:
+
+### Linearization and Hartman's Theorem 
+
+
+
+Suppose that the nonlinear autonomous system
+
+~ Equation { #nonlinear }
+\dot{x}=P(x,y),   \dot{y}=Q(x,y)
+~
+
+
+has a critical point at $(u,v)$.Let $X=x-u,Y=y-v$, the system becomes
+~ Equation 
+    \begin{pmatrix}
+        \dot{X}\\
+        \dot{Y}
+        \end{pmatrix}
+        =
+        \begin{pmatrix}
+        P(X+u,Y+v)\\ 
+        Q(X+u,Y+v)
+        \end{pmatrix}
+        =
+        \begin{pmatrix}
+        P(u,v)\\ 
+        Q(u,v)
+        \end{pmatrix}+J(u,v)\begin{pmatrix}
+        X\\ 
+        Y
+        \end{pmatrix}+\begin{pmatrix}
+        R(X,Y)\\ 
+        S(X,Y)
+        \end{pmatrix}\\
+~
+
+
+
+~ Definition{caption:Hyperbolic}
+A critical point is called hyperbolic critical point if the real part of the eigenvalues of the Jacobian matrix $J(u,v)$ are nonzero. If the real part of either of the eigenvalues of the Jacobian are equal to zero, then the critical point is called nonhyperbolic.
+~
+
+**Hartman's Theorem**
+
+Suppose that $(u,v)$ is a hyperbolic critical point of system [#nonlinear].Then there is a neighborhood of this critical point on which the phase portrait for the nonlinear system resembles that of the linearized system. In other words, there is a curvilinear continuous change of coordinates of taking one phase portrait to the other, and in a small region around the critical point, the portraits are qualitatively equivalent.
+
+Note that the stable $E_S$ and unstable $E_U$ manifolds of the nonlinear system will be tangent to the manifolds $W_S,W_U$ of the linearized system near the relevant critical point, but their trajectories diverge as one moves away from the critical point.
+
+### Constructing Phase Planar Diagrams 
+
+
+The method for plotting phase portraits for nonlinear planar systems near hyperbolic critical points may be broken down into three distinct steps:
+
+
+* Locate all of the critical points.
+   
+
+* Linearize and classify each critical point according to Hartman's theorem.
+   
+
+* Determine the isoclines and use $dy/dx$ to obtain slopes of trajectories.
+
+For nonhyperbolic systems, some examples are listed below.
+
+
+
+1. Classical Cusp 
+~ Equation 
+   \dot{x}=y^2,\qquad   \dot{y}=x
+~
+
+~ Figure { #fig-cusp; caption:"An image of Lena."; page-align:here }
+![cusp]
+~
+
+[SIR]: images/SIR.jpg "SIR" { width:auto; max-width:90% }
+
+[rabbits]: images/rabbits.jpg "rabbits" { width:auto; max-width:90% }
+
+[holling]: images/holling.jpg "holling" { width:auto; max-width:90% }
+
+[exclusion]: images/exclusion.jpg "exclusion" { width:auto; max-width:90% }
+
+[Epidemic]: images/Epidemic.jpg "Epidemic" { width:auto; max-width:90% }
+
+[cusp]: images/cusp.jpg "cusp" { width:auto; max-width:90% }
+
+[coexistence]: images/coexistence.jpg "coexistence" { width:auto; max-width:90% }
+
+   
+~ Begin Figure { caption:"A streamline phase portrait for SIR model when $\tau=0.003,r=0.5$." }
+
+~ Begin Center 
+![SIR]
+~ End Center
+
+   
+~ End Figure
+
+
+   
+
+* Chemical Kinetics
+   
+~ Math
+A+B\leftrightharpoons C
+~
+
+~ Equation 
+\dot{b}=k_rc-k_fab,\qquad   \dot{c}=k_f ab-k_rc    
+~
+
+   
+
+   
+
+* Rabbits' Epidemic Model
+   
+   Suppose that $H$ is a population of healthy rabbits and $I$ is the subpopulation of infected rabbits that never recover once infected, both measured in millions. The following differential equations can be used to model the dynamics of the system:
+ 
+~ Equation 
+\dot{b}=k_rc-k_fab,\qquad   \dot{c}=k_f ab-k_rc
+~
+
+   where $b$ is the birth rate, $d$ is the natural death rate, $\delta$ is the rate of death of the diseased rabbits, and $\tau$ is the rate at which the disease is transmitted.
+
+~ Begin Figure { caption:"A streamline phase portrait for Rabbits' Epidemic model when $b=4,d=1,\delta=6,\tau=1$." }
+~ Begin Center 
+![rabbits]
+
+        
+~ End Center
+
+~ Empty { height:'-0.5em' }
+
+~
+
+   
+~ End Figure
+
+
+
+&pagebreak;
+## Interacting Species 
+
+The theory of planar ODEs is applied to the study of interacting species. The models are restricted in that external factors such as pollution,environment, refuge, age classes, and other species interactions are ignored. However, even these restricted systems give useful results.
+
+### Competing Species 
+
+
+Suppose that there are two species in competition with one another in an environment where the common food supply is limited. Following equations are to describe the system:
+~ Equation 
+    \dot{x}=x(\beta-\delta x-\gamma y),\qquad   \dot{y}=y(b-dy-cx)
+~
+
+where $\beta, \delta, \gamma, a,b,c,x(t),y(t)$ are all positive.
+
+
+
+* The terms $\beta x -\delta x^2$ and $by-dy^2$ represent the usual logistic growth of one species(Verhulst's equation).
+   
+
+* Both species suffer as a result of competition over a limited food supply, hence the terms $-\gamma x y$ and $-cxy$ in $\dot{x}$ and $\dot{y}$
+
+Four equilibrium points are found:
+
+
+~ Math
+O=\left ( 0,0 \right ),P=\left ( 0,\frac{b}{d} \right ),Q=\left ( \frac{\beta}{\delta},0 \right ),R=\left ( \frac{\gamma b-\beta d}{\gamma c - \delta d}, \frac{\beta c-\delta b}{\gamma c - \delta d}\right )
+~
+
+
+By adjusting the values of parameters to make $R$ appear in the first quadrant.
+
+
+~ Begin Figure { caption:"Two images of competing species models. (a) is a coexistence end.($\delta=d=1,\beta=b=2,\gamma=c=3$) (b) is a mutual exclusion end.($\delta=d=1,\beta=b=2,\gamma=c=0.5$) " }
+
+
+~ Table
+| (a) Coexistence | (b) Mutual Exclusion |
+|:~~~~~~~~~~~~~~~:|:~~~~~~~~~~~~~~~~~~~~:|
+| ![exclusion]    | ![coexistence]       |
+~
+
+~ End Figure
+
+
+
+### Predator-Prey Models 
+
+#### Lotka-Volterra model 
+
+A very simple differential equation is first used by Voltera in 1926 and known as the $Lotka-Volterra model$.
+
+~ Equation { #unstable }
+    \dot{x}=x(\alpha-cy),\qquad   \dot{y}=y(\gamma x-\delta)
+~
+
+
+
+
+* The term $\alpha x$ represents the growth of the population of prey in the absence of any predators. This is obviously a crude model; the population of a species cannot increase forever.
+   
+
+* The terms $-cxy, +\gamma x y$ represents species interaction. The population of prey suffers and predators gain from the interaction.
+   
+
+* The term $-\delta y$ represents the extinction of predators in the absence of prey.
+
+Since the system has solution curves (the differential equations are separable) given by $x^\delta y^\alpha e^{\gamma x}e^{cy}=K$, where $K$ is a constant.
+
+There are two critical points: 
+
+
+~ Math
+O=\left ( 0,0 \right ),\qquad P=\left ( \frac{\delta}{\gamma},\frac{\alpha}{c} \right )
+~
+
+
+The critical point at $O$ is a saddle with manifold lying along the axes. The critical point at $P$ is a center with solutions circling it.
+
+#### Holling-Tanner model 
+
+
+
+
+
+**Definition of Structurally Unstable**
+
+If small perturbations are introduced into system &ndash; to model other factors, for example &ndash; then the qualitative behavior changes. The periodic cycles can be destroyed by adding terms into the right-hand sides of system [#unstable], which is structurally unstable (or not robust).
+
+The former data concerning the populations of predators and preys illustrates that the populations periodically raise and fall and that the maximum and minimum values are relatively constant, which is not true for the Lotka-Volterra model. In 1975, Holling and Tanner constructed a system of differential equations whose solutions have the same amplitudes in the long term, regardless of the initial populations. 
+
+~ Equation 
+\dot{x}=x(1-\frac{x}{7})    -\frac{6xy}{7+7x},\qquad   \dot{y}= \frac{y}{5} (1-\frac{Ny}{x})
+~
+
+
+
+
+* The term $ x(1-x/7)$ represents the usual logistic growth in the absence of predators.
+   
+
+* The term $-6xy/(7+7x) $ represents the effect of predators subject to a maximum predation rate.
+   
+
+* The term $-\delta y$ denotes the predator growth rate when a maximum of $x/N$ predators is supported by $x$ prey.
+
+When $N=2.5$, the populations eventually settle down to constant values. If there are any natural disasters or diseases, for example, then the populations would both decrease but eventually return to the stable values without periodic behavior.
+
+When $N=0.5$, the populations eventually rise and fall periodically regardless of the initial values. The isolated periodic trajectory is known as a $stable\ limit\ cycle$ in Figure [#stable].
+
+
+~ Begin Figure { #stable ; caption:"A streamline phase portrait for Holling-Tanner model when $N=0.5$.The stable limit cycle around (1,2)" }
+
+~ Begin Center 
+![holling]
+~ End Center
+
+~ Empty { height:'-0.5em' }
+
+~
+
+~ End Figure
+
+
+### Other Characteristics Affecting Interacting Species 
+
+
+#### Host-Parasite System 
+
+
+A microparasute-zooplankton-fish system is considered as an example of other characteristics affects. Hall et al. considered a stable host-parasite system subject to selective predation by a predator species.
+
+The differential equations are given by
+
+~ Equation 
+    \begin{split}
+        \dot{S} &= bS[1-c(S+I)]-dS-\beta SI-f_S(S,I,P),\\
+        \dot{I} &= \beta SI-(d+\alpha)I-f_1(S,I,P),
+    \end{split}
+~
+
+where $S$ is the susceptible population, $I$ is the infected population, $b$ is the birth rate, $c$ is the density dependency of birth rates, $d$ is the mortality rate. The functions $f_S$ and $f_I$ represent predator interaction with a saturating functional response, given by
+
+~ Equation 
+    f_S(S,I,P)=\frac{PS}{h_S+S+\theta \gamma I},\qquad f_I(S,I,P)=\frac{P\theta I}{h_S+S+\theta \gamma I}
+~
+
+where $P$ is a predation intensity term, $\theta$ represents the selectivity of the predator, $h_S$ represents a half-saturation constant of predators for susceptible hosts, and $\gamma$ is a handling time for susceptible and infected hosts. A typical parameter choice is that $b=0.4,c=1/20,\theta=5,\alpha=\beta=d=0.05,P=1,\gamma=h_S=1$, which catalyze a host-parasite system coexistence in a periodic manner.
+
+#### Other Characteristics 
+
+
+Some other characteristic ignored will be listed.
+
+
+
+* Age classes&ndash;for example, young, mature, and old; time lags need to be introduced into the differential equations. 
+   
+
+* Diseases&ndash;epidemics affecting one or more species.
+   
+
+* Environmental effects.
+   
+
+* Enrichment of prey&ndash;this can lead to extinction of predators.
+   
+
+* Harvesting and culling policies.
+   
+
+* Pollution&ndash;persistence and extinction.
+   
+
+* Refuge&ndash;for example, animals in Africa find refuge in the bush.
+
+
+
+## Limit Cycles 
+
+
+### Concepts 
+
+Limit cycles, or isolated periodic solutions, are the most common form of solution observed when modeling physical systems in the plane.
+
+**Definition of Limit Cycle**   A limit cycle is an isolated periodic solution.
+
+Perhaps the most famous class of differential equations that generalize the system similar to the oscillation are those first investigated by Li&eacute;nard in 1928,
+
+~ Equation 
+\ddot{x}+f(x)\dot{x}+g(x){x}=0
+~
+
+
+**Definition of Flow**   A flow on $\Re^2$ is a continuous mapping  $\pi:\Re^2 \rightarrow\Re^2$.
+
+
+**Definition of Orbit**
+
+
+* $\boldsymbol{I_X}$ is the maximal  interval of existence. 
+   
+
+* The trajectory (or orbit) through $\mathbf{x}$ is defined as $\gamma(\mathbf{x})=\{\pi (\mathbf{x},t):t\in \boldsymbol{I_X}  \}$ 
+   
+
+* The positive semiorbit is defined as $\gamma^{+}(\mathbf{x})=\{\pi (\mathbf{x},t):t>0\}$ 
+   
+
+* The negative semiorbit is defined as $\gamma^{-}(\mathbf{x})=\{\pi (\mathbf{x},t):t<0 \}$ 
+
+**Definition of Limit Set**
+
+$\boldsymbol{I_X}$ is the maximal  intercal of existence. 
+
+
+* The trajectory (or orbit) through $\mathbf{x}$ is defined as $\gamma(\mathbf{x})=\{\pi (\mathbf{x},t):t\in \boldsymbol{I_X}  \}$ &br;
+   A set $S$ is invariant with respect to a flow if $\mathbf{x}\in S$ implies that  $\gamma(\mathbf{x})\subset S$ 
+   
+
+* The positive semiorbit is defined as $\gamma^{+}(\mathbf{x})=\{\pi (\mathbf{x},t):t>0\}$&br;
+   The positive limit set of a point $\mathbf{x}$ is defined as $ %
+    \Lambda ^{\mathbf{+}}=\left \{ \mathbf{y}:\text{there exists a sequence } t_n\rightarrow\infty\text{ such that }\pi(\mathbf{x},t)\rightarrow \mathbf{y}   \right \}$ &br;
+   A set $S$ is positively invariant with respect to a flow if $\mathbf{x}\in S$ implies that  $\gamma^{+}(\mathbf{x})\subset S$ 
+   
+
+* The negative semiorbit is defined as $\gamma^{-}(\mathbf{x})=\{\pi (\mathbf{x},t):t<0 \}$ &br;
+   The negative limit set of a point $\mathbf{x}$ is defined as $ %
+    \Lambda ^{\mathbf{-}}=\left \{ \mathbf{y}:\text{there exists a sequence } t_n\rightarrow - \infty\text{ such that }\pi(\mathbf{x},t)\rightarrow \mathbf{y}   \right \}$ &br;
+   A set $S$ is invariant with respect to a flow if $\mathbf{x}\in S$ implies that  $\gamma^{-}(\mathbf{x})\subset S$ 
+
+**Definition of Limit Cycle**
+
+A limit cycle, say, $\Gamma$, is 
+
+
+* a stable limit cycle if $\Lambda^{+}(\mathbf{x})=\Gamma$ for all $\mathbf{x}$ in some neighborhood.
+   
+
+* an unstable limit cycle if $\Lambda^{-}(\mathbf{x})=\Gamma$ for all $\mathbf{x}$ in some neighborhood.
+   
+
+* a semistable limit cycle if it is attracting on the one side and repelling on the other side.
+
+### Theorem and Application 
+
+#### The Poincar&eacute;-Bendixson Theorem 
+
+~ Theorem{caption:The Poincar&eacute;-Bendixson Theorem}
+Suppose that $\gamma^+$ is contained in a bounded region in which there are finitely many critical points. Then $\Lambda^+(\gamma)$ is either
+
+
+* a single critical point;
+   
+
+* a single closed orbit;
+   
+
+* a graphic&ndash;critical points joined by heteroclinic orbits.(异宿轨)
+~
+
+
+**Corollary about Unique Limit Cycle** Let D be a bounded closed set containing no critical points and suppose that D is positively invariant. Then there exists a limit cycle contained in D.
+
+**Definition of Jordan Curve** A planar simple closed curve is called a Jordan curve.
+
+Next, consider such a universal system
+
+~ Equation { #universal }
+\begin{aligned}
+\dot{x}= P(x,y) \dot{y}=Q(x,y)
+\end{aligned}
+~
+
+
+where $P$ and $Q$ have continuous first-order partial derivatives. $\psi$ is a weighting factor that is continuously differentiable.
+
+**Bendixson's Criteria**\/&quad;Consider system [#universal] and suppose that D is a simply connected domain and that  $\nabla\cdot(\psi \mathbf{X})=div(\psi \mathbf{X} )=\frac{\partial }{\partial x}(\psi P)+\frac{\partial }{\partial x}(\psi Q)\neq 0$ in D. Then there are no limit cycles entirely contained in D.
+
+From Green's Theorem, the integrate of $\nabla\cdot(\psi \mathbf{X})$ in the region circled by limit cycle is zero. While $\nabla\cdot(\psi \mathbf{X})$ is continue on the region which cause that its sign does not change. The preceding two sentences have been contradictory.
+
+
+
+**Dulac's Criteria**
+
+Consider an annular region in system [#universal], say, A, contained in an open set E. If 
+$\nabla\cdot(\psi \mathbf{X})=div(\psi \mathbf{X} )=\frac{\partial }{\partial x}(\psi P)+\frac{\partial }{\partial x}(\psi Q)  $
+does not change sign in A, then there is at most one limit cycle entirely contained in A. 
+
+Apply Green's Theorem to the region between the two limit cycles, which is bound to be zero. Whereas the divergence does not change sign in A, contradictory to the fact.
+
+
+#### Index 
+
+**Definition of Index**\/&quad;The Index $\boldsymbol{I_X}(C)$ is defined as $\frac{\Delta \Theta }{2\pi}$, where $\Delta \Theta$ is the overall change in the angle $\Theta$.
+
+The index of a node, focus, or center is +1 and the index of a col is -1.
+
+**Theorem about Cycle Index Amount**\/&quad;The sum of the indices of the critical points contained entirely within a limit cycle is +1.
+
+
+**Theorem about Point-Cycle Relation**\/&quad;A limit cycle contains at least one critical point.
+
+#### Prove No cycle 
+
+
+When proving that a system has no limit cycles, the following items should be considered:
+
+
+1. Bendixson'x criteria;
+* Indices;
+* Invariant lines;
+* Critical points.
+<br/>
+
+## Applications in Circuit
+
+RLC circuit usually means the integration circuit of resistors(resistance R), inductors (inductance L) and capacitor (capacitance C). 
+
+~ Math
+\begin{aligned}
+  \frac{du}{dt}&=C^{-1}&i&\\
+  u&=R&i&\\
+  u&=L&\frac{di}{dt}&
+\end{aligned}
+~
+
+Discovers have been found when investigating the circular series connection of RLC circuit. The circuit with 3 voltages and 3 currents could be simplified to 2 variables from _Kirchhoff's current \& voltage law_(KVL & KCL) and aforementioned relationship between the voltage and current.
+
+
+~ Equation{#RLC}
+\begin{aligned}
+  L\frac{di_L}{dt}&=&v_L&=&v_C-f(i_L),\\
+  C\frac{dv_C}{dt}&=&i_C&=&-i_L.\\
+\end{aligned}
+~
+The Equation [#RLC] is transformed to differential equations 
+### The Li&eacute;nard Equation
+~ Equation{#lienard}
+\begin{aligned}
+  \frac{dx}{dt}&=y-f(x),\\
+  \frac{dy}{dt}&=-x,\\
+\end{aligned}
+~
+
+Its Liapunov function,
+~ Aligned
+W(x,y)&=(x^2+y^2)/2\\
+\dot{W}&=x(y-f(x))+y(-x)=-x f(x)
+~
+, allows $W$ a strict Liapunov function.
+### The van der Pol Equation
+Let $f(x)=x^3-x$, Eq. [#lienard] becomes _van der Pol equation_.
+
+~ Figure{caption:van der Pol Oscillaion}
+![irur]
+~
+[irur]: images/irur.png "irur" { width:auto; max-width:60% }
+
+~ Proposition{#circular; caption:Circular Characteristic}
+Solution curves starting on $v^+$ cross successively through $g^+$,$v^-$,and $g^-$ before returning to $v^+$. (v for y-nullcline, g for x-nullcline) It can be proved by integrating $x'(t), y'(t)$ on time interval. 
+~
+
+
+~ Aligned
+&\text{Circular Characteristic \& Streams do not cross}\\
+  \Rightarrow & \alpha(y):v^+\rightarrow v^-  \searrow\\
+~
+
+
+~ Theorem{caption:van der Pol Oscillation}
+There is one nontrivial periodic solution of _the can der Pol equation_, and every other solution (except the equilibrium point at the origin) tends to this periodic solution. "The system oscillates."
+~
+
+~ Theorem
+The Poincar&eacute; map has a unique fixed point in $v^+$. Furthermore, the sequence $P^n(y_0)$ tends to this fixed point as $n\to \infty$ for any nonzero $y_0\in v^+$.
+~
+
+### Exploration: Neurodynamics
+4-dimensional Hodgkin-Huxley system is used to model the neurodynamics procedure, but hard for analyzing.
+
+Fitzhugh and Nagumo et. al. produced a simpler model of the Hodgkin-Huxley model, similar to systems in circuit system. You can imagine the limit cycle is divided to 2 limit lines with ends at the origin and infinity.
+
+~ Equation{#fitzhugh-nagumo}
+\begin{aligned}
+  \frac{dx}{dt}&=y+x-x^3/3+I,\\
+  \frac{dy}{dt}&=-x+a-by,\\
+\end{aligned}
+~
+~ Figure{caption:Fitzhugh-Nagumo system}
+![Fitzhugh-Nagumo]
+
+[Fitzhugh-Nagumo]: images/Fitzhugh-Nagumo.png "Fitzhugh-Nagumo" { width:auto; max-width:60% }
+~
+
+
+
+# Partial Differential Equations
+***
+# Difference Equations
+***
+# Methods in Mathematical Physics
+Mainly from [@DzYao2010MathematicalPhysicsMethod;@LsJiang1986MathematicalPhysicsMethod]
+***
+## Access to Equations in Physics
+Two varieties of most related to mathematical equations are:
+
+- Conservation Laws,
+- Variation Principles,
+
+other principles are also included if necessary.
+### Conservation Laws
+### Variation Principles
+
+## Varieties of Second Order Linear Partial Differential Equations
+
+- Hyperbolic Equations (Wave Equations)
+~ Equation
+u_{tt} = a^2\Delta u +f
+~
+
+$a$ expresses the velocity of wave transmission (String Vibration $a^2=T/\rho,f(x,t)=F(x,t)/\rho$).
+
+- Parabolic Equations (Heat Conduction)
+~ Equation
+        u_{t}=D\Delta u+f 
+~
+
+D expresses diffusion coefficient (heat conduction). (One-dimensional conduct: $D=k/c\rho,f=F/c\rho$)
+
+
+* Ellipitle Equations (Describe steady state)
+~ Equation 
+        -h=\Delta u    
+~
+
+   $h$可以是静电场有关的已知量（$\Delta V=-\rho/\epsilon$）。稳定的温度场中对时间的偏导为0，可化为泊松方程。
+
+## Complete Mathematical Models 
+
+## Method of Travelling Waves 
+~ Equation
+\begin{cases}
+u_{tt}=a^2 \Delta u +f(M,t)\\
+u|_{t=0}=\phi(M)\\
+u_t|_{t=0}=\psi(M)
+\end{cases}\\
+\begin{cases}
+f(M,t)\ \ \quad\qquad \begin{cases}
+u_1(x,t)=\frac{1}{2a}\int_{0}^{t}\int_{x-a(t-\tau)}^{x+a(t-\tau)}f(\alpha,\tau)d\alpha d\tau & 1D \\ 
+u_1(M,t)=\frac{1}{4\pi a^2}\iiint_{T^M_{at}}\frac{ [f]  }{r} dv& 3D 
+\end{cases}  \\ 
+\phi(M,t),\psi(M,t) \begin{cases}
+u_2(x,t)=\frac{1}{2}[\phi(x+at)+\phi(x-at)]+\frac{1}{2a}\int_{x-at}^{x+at} \psi(\alpha)d\alpha & 1D \\ 
+u_2(M,t)=\frac{1}{4\pi a}\left [ \frac{\partial }{\partial t}\iint_{S^M_{at}}\frac{\phi(M')}{at}ds+\iint_{S^M_{at}}\frac{\psi(M')}{at}ds \right ] & 3D
+\end{cases}
+\end{cases}
+~
+
+
+
+## The Method of Separation of Variables 
+
+## Integral Variable Method 
+
+所谓积分变换，就是把某函数类A中的函数经过某种可逆的积分手续，变成另一函数类的函数。这种变化可以使偏微分方程降为常微分方程，常微分方程降为代数方程。
+### Fourier Transform 
+
+
+**Fourier Integral Theorem**
+
+只有满足傅里叶积分定理，才能写出函数的傅里叶积分公式。
+~ Equation 
+    f(x)=\frac{1}{2\pi}\int_{\infty}^{-\infty}\left [ \int_{\infty}^{-\infty}f(\xi)e^{-i\omega \xi} d\xi \right ] e^{i\omega \xi}d\omega
+~
+
+将傅里叶积分公式中括号内的部分抽取出来即傅里叶变换。
+~ Equation { #ft }
+    G(\omega)=\int_{\infty}^{-\infty}f(\xi)e^{-i\omega x} dx
+~
+
+整个合起来则是傅里叶逆变换。
+~ Equation { #rft }
+    f(x)=\frac{1}{2\pi}\int_{\infty}^{-\infty}G(\omega) e^{i\omega \xi}d\omega
+~
+
+傅里叶变换与逆变换只要积分前的系数乘积为$1/2\pi$，便可以修改。其中的指数因子也可以正反互换。
+
+类似的，在量子力学中，由于$p=\hbar k$,则有$G(\omega)=G(p/\hbar)=C(p)$,于是有
+~ Equation 
+    \psi(x)=\frac{1}{\sqrt{2\pi\hbar}}\int_{\infty}^{-\infty}C(p)e^{\frac{i}{\hbar}px}dp
+~
+
+~ Equation 
+    C(p)=\frac{1}{\sqrt{2\pi\hbar}}\int_{\infty}^{-\infty}\psi(x)e^{\frac{i}{\hbar}px}dx
+~
+
+
+**Characteristics**\/
+
+
+
+* 线性
+~ Equation 
+        F[\alpha f_1+\beta f_2]=\alpha F[f_1]+\beta F[f_2] 
+~
+
+   
+
+* 延迟
+~ Equation 
+        F[e^{i\omega_0 x}f(x)]=G(\omega-\omega_0)    
+~
+
+
+* 位移
+~ Equation 
+        F[f(x-x_0)]=e^{-i\omega x_0}G(\omega)
+~
+    
+
+* 相似
+~ Equation 
+        F[f(ax)]=\frac{1}{|a|}G(\omega/a)    
+~
+    
+
+* 微分，若$|x|\to \infty$时，$f^{(k)}(x)\to 0,k=1,2,\cdots,n-1$
+~ Equation 
+        F[f^{(n)}(x)]=(i\omega)^{n}G(\omega) 
+~
+
+
+* 积分
+~ Equation 
+        F[\int_{x_0}^{x}f(\xi)d\xi]=\frac{1}{i\omega}G(\omega)
+~
+
+
+## Method of Green's Function 
+$\delta$ function definition:
+~ Equation
+\begin{cases}
+\delta(x)=0 &  x\neq 0 \\ 
+\delta(x)=\infty & x=0 \\ 
+ \int_{-\infty}^{\infty}\delta(x)dx=1& 
+\end{cases}
+~
+
+Characteristic of $\delta$:
+- $ \int_{-\infty}^{\infty}f(x)\delta(x-x_0)dx=f(x_0)$
+- $\int_{-\infty}^{\infty}f(x)\delta^{(n)}(x-a)dx=(-1)^n f^{(n)}(a)$
+- $
+\delta [\phi (x) ]=\sum_{i=1}^{k}  \frac{\delta (x-x_i)}{\left | \phi'(x_i) \right |}$
+
+
+
+
+## The Variational Method 
+Some important extractions:
+
+- Lagrangian Multiplier Method
+~ Equation
+\begin{cases}
+J[y(x)]=\int_{a}^{b}F(x,y,y')dx \\ 
+\int_{a}^{b}G(x,y,y')dx=l  
+\end{cases}\Rightarrow 
+\delta\int_{a}^{b}[F(x,y,y')+\lambda G(x,y,y')]dx=0
+~
+
+- Euler Equations
+
+Functional of Multiple functions
+~ Equation
+J[y_1(x),y_2(x)...]=\int_{a}^{b}F(x;y_1,y_2...;y_1',y_2'...)dx   
+\Rightarrow 
+\frac{\partial F}{\partial y_i}-\frac{\mathrm{d} }{\mathrm{d} x}(\frac{\partial F}{\partial y_i'}) ,\forall k 
+~
+
+Functional related to higher order differentiate
+~ Equation
+\delta \int_{a}^{b}F(x,y,y',y'',y''')dx  =0 
+\Rightarrow 
+\frac{\partial F}{\partial y}-\frac{\mathrm{d} }{\mathrm{d} x}(\frac{\partial F}{\partial y'})+\frac{\mathrm{d} ^2}{\mathrm{d}^2 x}(\frac{\partial F}{\partial y''})-\frac{\mathrm{d}^3 }{\mathrm{d} x^3}(\frac{\partial F}{\partial y'''})  
+~
+Functional of functions with multiple variables
+~ Equation
+\delta \iiint_{v}F(x,y,z,u,u_x,u_y,u_z)dxdydz   =0
+\Rightarrow 
+\frac{\partial F}{\partial u}-\frac{\partial }{\partial x}(\frac{\partial F}{\partial u_x})-\frac{\partial }{\partial y}(\frac{\partial F}{\partial u_y})-\frac{\partial }{\partial z}(\frac{\partial F}{\partial u_z})=0  
+~
+
+
+
+
+Conclusion
+
+~ Equation
+Functional\ Extreme\begin{cases}
+Indirect & Solve\ Euler\ Equation \\ 
+Direct & Ritz\ Method
+\end{cases}
+~
+
+
+
+## Some Solving Methods for Nonlinear Equations and Integral Equations 
+
+## Integral Equations 
+
+
+
+
+
+
+[BIB]
+
+&pagebreak;
+
+
+~ End MainPanel
